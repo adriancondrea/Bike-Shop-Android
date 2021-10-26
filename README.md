@@ -15,3 +15,7 @@ Change log
 - Recycler view, https://developer.android.com/guide/topics/ui/layout/recyclerview
 - View models, https://developer.android.com/topic/libraries/architecture/viewmodel
 - Guide to app architecture, https://developer.android.com/jetpack/guide
+
+04 View models & live data
+
+- Live data, https://developer.android.com/topic/libraries/architecture/livedata

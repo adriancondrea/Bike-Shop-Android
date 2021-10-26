@@ -10,8 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ItemListAdapter(
     private val fragment: Fragment,
-    private val items: List<Item>
 ) : RecyclerView.Adapter<ItemListAdapter.ViewHolder>() {
+
+    var items = emptyList<Item>()
+        set(value) {
+            field = value
+            notifyDataSetChanged();
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
