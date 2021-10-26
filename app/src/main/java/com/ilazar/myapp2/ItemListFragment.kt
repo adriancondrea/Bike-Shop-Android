@@ -26,6 +26,7 @@ class ItemListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.i(TAG, "onViewCreated")
+        binding.itemList.adapter = ItemListAdapter(this, ItemsViewModel.items)
         binding.fab.setOnClickListener {
             findNavController()
                 .navigate(R.id.action_ItemListFragment_to_ItemEditFragment)
