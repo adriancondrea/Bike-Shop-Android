@@ -25,3 +25,9 @@ Change log
 - Repository, https://developer.android.com/jetpack/guide
 - OkHttp, https://square.github.io/okhttp/
 - Retrofit, https://square.github.io/retrofit/
+
+06 Master-detail, online
+
+- Show a list of items
+- Create/update item
+- Use a REST service

@@ -29,7 +29,7 @@ class ItemListViewModel : ViewModel() {
             mutableLoading.value = true
             mutableException.value = null
             try {
-                mutableItems.value = ItemRepository.getAll()
+                mutableItems.value = ItemRepository.loadAll()
                 Log.d(TAG, "loadItems succeeded");
                 mutableLoading.value = false
             } catch (e: Exception) {

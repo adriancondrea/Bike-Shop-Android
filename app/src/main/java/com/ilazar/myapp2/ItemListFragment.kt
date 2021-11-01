@@ -31,8 +31,8 @@ class ItemListFragment : Fragment() {
         Log.i(TAG, "onViewCreated")
         setupItemList()
         binding.fab.setOnClickListener {
-            Log.v(TAG, "creating new item")
-            itemsModel.items.value?.size?.let { itemsModel.createItem(it) }
+            Log.v(TAG, "add new item")
+            findNavController().navigate(R.id.ItemEditFragment)
         }
     }
 

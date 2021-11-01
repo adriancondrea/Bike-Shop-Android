@@ -1,11 +1,13 @@
 package com.ilazar.myapp2
 
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
 class ItemListAdapter(
@@ -17,6 +19,13 @@ class ItemListAdapter(
             field = value
             notifyDataSetChanged();
         }
+
+    private var onItemClick: View.OnClickListener = View.OnClickListener { view ->
+        val item = view.tag as Item
+        fragment.findNavController().navigate(R.id.ItemEditFragment, Bundle().apply {
+            putString(ItemEditFragment.ITEM_ID, item.id)
+        })
+    };
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -30,6 +39,7 @@ class ItemListAdapter(
         val item = items[position]
         holder.textView.text = item.text
         holder.itemView.tag = item
+        holder.itemView.setOnClickListener(onItemClick)
     }
 
     override fun getItemCount() = items.size
