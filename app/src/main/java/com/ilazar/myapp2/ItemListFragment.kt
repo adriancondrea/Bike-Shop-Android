@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -40,8 +41,21 @@ class ItemListFragment : Fragment() {
         binding.itemList.adapter = itemListAdapter
         itemsModel = ViewModelProvider(this).get(ItemListViewModel::class.java)
         itemsModel.items.observe(viewLifecycleOwner, { value ->
+            Log.i(TAG, "update items")
             itemListAdapter.items = value
         })
+        itemsModel.loading.observe(viewLifecycleOwner, { loading ->
+            Log.i(TAG, "update loading")
+            binding.progress.visibility = if (loading) View.VISIBLE else View.GONE
+        })
+        itemsModel.loadingError.observe(viewLifecycleOwner, { exception ->
+            if (exception != null) {
+                Log.i(TAG, "update loading error")
+                val message = "Loading exception ${exception.message}"
+                Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+            }
+        })
+        itemsModel.loadItems()
     }
 
     override fun onDestroyView() {

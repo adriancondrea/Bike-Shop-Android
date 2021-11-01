@@ -19,3 +19,9 @@ Change log
 04 View models & live data
 
 - Live data, https://developer.android.com/topic/libraries/architecture/livedata
+
+05 Repository
+
+- Repository, https://developer.android.com/jetpack/guide
+- OkHttp, https://square.github.io/okhttp/
+- Retrofit, https://square.github.io/retrofit/
