@@ -1,4 +1,4 @@
-package com.ilazar.myapp2
+package com.ilazar.myapp2.todo.items
 
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +9,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.ilazar.myapp2.R
+import com.ilazar.myapp2.TAG
+import com.ilazar.myapp2.todo.data.Item
+import com.ilazar.myapp2.todo.item.ItemEditFragment
 
 class ItemListAdapter(
     private val fragment: Fragment,

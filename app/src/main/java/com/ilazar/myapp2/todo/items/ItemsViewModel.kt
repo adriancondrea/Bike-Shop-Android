@@ -1,10 +1,13 @@
-package com.ilazar.myapp2
+package com.ilazar.myapp2.todo.items
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ilazar.myapp2.todo.data.ItemRepository
+import com.ilazar.myapp2.TAG
+import com.ilazar.myapp2.todo.data.Item
 import kotlinx.coroutines.launch
 
 class ItemListViewModel : ViewModel() {

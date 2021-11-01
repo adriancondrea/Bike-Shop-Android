@@ -1,4 +1,4 @@
-package com.ilazar.myapp2
+package com.ilazar.myapp2.todo.data
 
 data class Item(
     val id: String,

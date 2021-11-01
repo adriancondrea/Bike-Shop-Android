@@ -31,3 +31,19 @@ Change log
 - Show a list of items
 - Create/update item
 - Use a REST service
+
+07 Refactor to a modular structure
+
+- Guide to app architecture, https://developer.android.com/jetpack/guide
+- Recommended structure
+    - core/common
+    - module (e.g. todo)
+        - feature (e.g. items)
+            - fragments, adapters, view models (e.g. ItemListFragment, ItemListAdapter, ItemListViewModel)
+        - data
+            - entities (e.g. Item)
+            - repositories (e.g. ItemRepository)
+            - local
+                - data aceess objects
+            - remote
+                - apis/rest clients

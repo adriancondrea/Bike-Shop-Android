@@ -1,6 +1,7 @@
-package com.ilazar.myapp2
+package com.ilazar.myapp2.todo.data.remote
 
 import com.google.gson.GsonBuilder
+import com.ilazar.myapp2.todo.data.Item
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

@@ -1,4 +1,4 @@
-package com.ilazar.myapp2
+package com.ilazar.myapp2.todo.item
 
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.ilazar.myapp2.TAG
 import com.ilazar.myapp2.databinding.FragmentItemEditBinding
 
 class ItemEditFragment : Fragment() {
