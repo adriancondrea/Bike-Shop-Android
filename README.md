@@ -49,3 +49,5 @@ Change log
                 - apis/rest clients
 
 * 08 - Authentication
+
+* 09 - Room
