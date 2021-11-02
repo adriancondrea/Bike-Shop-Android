@@ -6,6 +6,12 @@
     app:startDestination="@id/ItemListFragment">
 
     <fragment
+        android:id="@+id/FragmentLogin"
+        android:name="com.ilazar.myapp2.auth.login.LoginFragment"
+        android:label="@string/login"
+        tools:layout="@layout/fragment_login" />
+
+    <fragment
         android:id="@+id/ItemListFragment"
         android:name="com.ilazar.myapp2.todo.items.ItemListFragment"
         android:label="@string/item_list_fragment_label"
@@ -15,6 +21,7 @@
             android:id="@+id/action_ItemListFragment_to_ItemEditFragment"
             app:destination="@id/ItemEditFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/ItemEditFragment"
         android:name="com.ilazar.myapp2.todo.item.ItemEditFragment"

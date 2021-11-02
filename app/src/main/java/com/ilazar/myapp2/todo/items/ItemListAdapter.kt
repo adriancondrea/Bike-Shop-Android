@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.ilazar.myapp2.R
-import com.ilazar.myapp2.TAG
+import com.ilazar.myapp2.core.TAG
 import com.ilazar.myapp2.todo.data.Item
 import com.ilazar.myapp2.todo.item.ItemEditFragment
 
@@ -27,7 +27,7 @@ class ItemListAdapter(
     private var onItemClick: View.OnClickListener = View.OnClickListener { view ->
         val item = view.tag as Item
         fragment.findNavController().navigate(R.id.ItemEditFragment, Bundle().apply {
-            putString(ItemEditFragment.ITEM_ID, item.id)
+            putString(ItemEditFragment.ITEM_ID, item._id)
         })
     };
 

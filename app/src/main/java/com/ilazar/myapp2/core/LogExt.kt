@@ -1,4 +1,4 @@
-package com.ilazar.myapp2
+package com.ilazar.myapp2.core
 
 val Any.TAG: String
     get() {

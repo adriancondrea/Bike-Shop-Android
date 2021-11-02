@@ -1,42 +1,25 @@
 package com.ilazar.myapp2.todo.data.remote
 
-import com.google.gson.GsonBuilder
+import com.ilazar.myapp2.core.Api
 import com.ilazar.myapp2.todo.data.Item
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
 object ItemApi {
-    private const val URL = "http://192.168.0.150:3000/"
-
     interface Service {
-        @GET("/item")
+        @GET("/api/item")
         suspend fun find(): List<Item>
 
-        @GET("/item/{id}")
+        @GET("/api/item/{id}")
         suspend fun read(@Path("id") itemId: String): Item;
 
         @Headers("Content-Type: application/json")
-        @POST("/item")
+        @POST("/api/item")
         suspend fun create(@Body item: Item): Item
 
         @Headers("Content-Type: application/json")
-        @PUT("/item/{id}")
+        @PUT("/api/item/{id}")
         suspend fun update(@Path("id") itemId: String, @Body item: Item): Item
     }
 
-    private val client: OkHttpClient = OkHttpClient.Builder().build()
-
-    private var gson = GsonBuilder()
-        .setLenient()
-        .create()
-
-    private val retrofit = Retrofit.Builder()
-        .baseUrl(URL)
-        .addConverterFactory(GsonConverterFactory.create(gson))
-        .client(client)
-        .build()
-
-    val service: Service = retrofit.create(Service::class.java)
+    val service: Service = Api.retrofit.create(Service::class.java)
 }

@@ -6,7 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ilazar.myapp2.todo.data.ItemRepository
-import com.ilazar.myapp2.TAG
+import com.ilazar.myapp2.core.TAG
+import com.ilazar.myapp2.core.Result
 import com.ilazar.myapp2.todo.data.Item
 import kotlinx.coroutines.launch
 
@@ -26,39 +27,45 @@ class ItemEditViewModel : ViewModel() {
             Log.i(TAG, "loadItem...")
             mutableFetching.value = true
             mutableException.value = null
-            try {
-                mutableItem.value = ItemRepository.load(itemId)
-                Log.i(TAG, "loadItem succeeded")
-                mutableFetching.value = false
-            } catch (e: Exception) {
-                Log.w(TAG, "loadItem failed", e)
-                mutableException.value = e
-                mutableFetching.value = false
+            when (val result = ItemRepository.load(itemId)) {
+                is Result.Success -> {
+                    Log.d(TAG, "loadItem succeeded");
+                    mutableItem.value = result.data
+                }
+                is Result.Error -> {
+                    Log.w(TAG, "loadItem failed", result.exception);
+                    mutableException.value = result.exception
+                }
             }
+            mutableFetching.value = false
         }
     }
 
     fun saveOrUpdateItem(text: String) {
         viewModelScope.launch {
-            Log.i(TAG, "saveOrUpdateItem...");
+            Log.v(TAG, "saveOrUpdateItem...");
             val item = mutableItem.value ?: return@launch
             item.text = text
             mutableFetching.value = true
             mutableException.value = null
-            try {
-                if (item.id.isNotEmpty()) {
-                    mutableItem.value = ItemRepository.update(item)
-                } else {
-                    mutableItem.value = ItemRepository.save(item)
-                }
-                Log.i(TAG, "saveOrUpdateItem succeeded");
-                mutableCompleted.value = true
-                mutableFetching.value = false
-            } catch (e: Exception) {
-                Log.w(TAG, "saveOrUpdateItem failed", e);
-                mutableException.value = e
-                mutableFetching.value = false
+            val result: Result<Item>
+            if (item._id.isNotEmpty()) {
+                result = ItemRepository.update(item)
+            } else {
+                result = ItemRepository.save(item)
             }
+            when (result) {
+                is Result.Success -> {
+                    Log.d(TAG, "saveOrUpdateItem succeeded");
+                    mutableItem.value = result.data
+                }
+                is Result.Error -> {
+                    Log.w(TAG, "saveOrUpdateItem failed", result.exception);
+                    mutableException.value = result.exception
+                }
+            }
+            mutableCompleted.value = true
+            mutableFetching.value = false
         }
     }
 }

@@ -10,7 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.ilazar.myapp2.R
-import com.ilazar.myapp2.TAG
+import com.ilazar.myapp2.auth.data.AuthRepository
+import com.ilazar.myapp2.core.TAG
 import com.ilazar.myapp2.databinding.FragmentItemListBinding
 
 class ItemListFragment : Fragment() {
@@ -31,6 +32,10 @@ class ItemListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.i(TAG, "onViewCreated")
+        if (!AuthRepository.isLoggedIn) {
+            findNavController().navigate(R.id.FragmentLogin)
+            return;
+        }
         setupItemList()
         binding.fab.setOnClickListener {
             Log.v(TAG, "add new item")

@@ -47,3 +47,5 @@ Change log
                 - data aceess objects
             - remote
                 - apis/rest clients
+
+* 08 - Authentication
