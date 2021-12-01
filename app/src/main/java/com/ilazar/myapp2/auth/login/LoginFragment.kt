@@ -14,7 +14,6 @@ import androidx.navigation.fragment.findNavController
 import com.ilazar.myapp2.R
 import com.ilazar.myapp2.core.Result
 import com.ilazar.myapp2.core.TAG
-import com.ilazar.myapp2.databinding.FragmentItemListBinding
 import com.ilazar.myapp2.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
@@ -25,7 +24,7 @@ class LoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         Log.i(TAG, "onCreateView")
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root

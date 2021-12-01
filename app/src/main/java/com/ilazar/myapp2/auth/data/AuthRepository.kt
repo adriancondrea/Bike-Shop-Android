@@ -5,8 +5,7 @@ import com.ilazar.myapp2.core.Api
 import com.ilazar.myapp2.core.Result
 
 object AuthRepository {
-    var user: User? = null
-        private set
+    private var user: User? = null
 
     val isLoggedIn: Boolean
         get() = user != null

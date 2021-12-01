@@ -23,7 +23,7 @@ class LoginViewModel : ViewModel() {
 
     fun login(username: String, password: String) {
         viewModelScope.launch {
-            Log.v(TAG, "login...");
+            Log.v(TAG, "login...")
             mutableLoginResult.value = AuthRepository.login(username, password)
         }
     }

@@ -1,4 +1,4 @@
-package com.ilazar.myapp2.todo.items
+package com.ilazar.myapp2.todo.bikes
 
 import android.os.Bundle
 import android.util.Log
@@ -12,20 +12,20 @@ import androidx.navigation.fragment.findNavController
 import com.ilazar.myapp2.R
 import com.ilazar.myapp2.auth.data.AuthRepository
 import com.ilazar.myapp2.core.TAG
-import com.ilazar.myapp2.databinding.FragmentItemListBinding
+import com.ilazar.myapp2.databinding.FragmentBikeListBinding
 
-class ItemListFragment : Fragment() {
-    private var _binding: FragmentItemListBinding? = null
-    private lateinit var itemListAdapter: ItemListAdapter
-    private lateinit var itemsModel: ItemListViewModel
+class BikeListFragment : Fragment() {
+    private var _binding: FragmentBikeListBinding? = null
+    private lateinit var bikeListAdapter: BikeListAdapter
+    private lateinit var bikesModel: BikeListViewModel
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         Log.i(TAG, "onCreateView")
-        _binding = FragmentItemListBinding.inflate(inflater, container, false)
+        _binding = FragmentBikeListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -34,35 +34,35 @@ class ItemListFragment : Fragment() {
         Log.i(TAG, "onViewCreated")
         if (!AuthRepository.isLoggedIn) {
             findNavController().navigate(R.id.FragmentLogin)
-            return;
+            return
         }
-        setupItemList()
+        setupBikeList()
         binding.fab.setOnClickListener {
-            Log.v(TAG, "add new item")
-            findNavController().navigate(R.id.ItemEditFragment)
+            Log.v(TAG, "add new bike")
+            findNavController().navigate(R.id.BikeEditFragment)
         }
     }
 
-    private fun setupItemList() {
-        itemListAdapter = ItemListAdapter(this)
-        binding.itemList.adapter = itemListAdapter
-        itemsModel = ViewModelProvider(this).get(ItemListViewModel::class.java)
-        itemsModel.items.observe(viewLifecycleOwner, { value ->
-            Log.i(TAG, "update items")
-            itemListAdapter.items = value
+    private fun setupBikeList() {
+        bikeListAdapter = BikeListAdapter(this)
+        binding.bikeList.adapter = bikeListAdapter
+        bikesModel = ViewModelProvider(this).get(BikeListViewModel::class.java)
+        bikesModel.bikes.observe(viewLifecycleOwner, { value ->
+            Log.i(TAG, "update bikes")
+            bikeListAdapter.bikes = value
         })
-        itemsModel.loading.observe(viewLifecycleOwner, { loading ->
+        bikesModel.loading.observe(viewLifecycleOwner, { loading ->
             Log.i(TAG, "update loading")
             binding.progress.visibility = if (loading) View.VISIBLE else View.GONE
         })
-        itemsModel.loadingError.observe(viewLifecycleOwner, { exception ->
+        bikesModel.loadingError.observe(viewLifecycleOwner, { exception ->
             if (exception != null) {
                 Log.i(TAG, "update loading error")
                 val message = "Loading exception ${exception.message}"
                 Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
             }
         })
-        itemsModel.refresh()
+        bikesModel.refresh()
     }
 
     override fun onDestroyView() {

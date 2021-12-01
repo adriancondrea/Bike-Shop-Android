@@ -11,4 +11,8 @@
     <string name="sign_in">Sign In</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="name">name:</string>
+    <string name="condition">condition:</string>
+    <string name="warranty">warranty:</string>
+    <string name="price">price:</string>
 </resources>

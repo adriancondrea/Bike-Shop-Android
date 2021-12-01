@@ -3,7 +3,7 @@ package com.ilazar.myapp2.core
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class TokenInterceptor constructor() : Interceptor {
+class TokenInterceptor : Interceptor {
   var token: String? = null
 
   override fun intercept(chain: Interceptor.Chain): Response {

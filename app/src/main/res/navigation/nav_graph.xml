@@ -13,20 +13,20 @@
 
     <fragment
         android:id="@+id/ItemListFragment"
-        android:name="com.ilazar.myapp2.todo.items.ItemListFragment"
+        android:name="com.ilazar.myapp2.todo.bikes.BikeListFragment"
         android:label="@string/item_list_fragment_label"
-        tools:layout="@layout/fragment_item_list" >
+        tools:layout="@layout/fragment_bike_list" >
 
         <action
             android:id="@+id/action_ItemListFragment_to_ItemEditFragment"
-            app:destination="@id/ItemEditFragment" />
+            app:destination="@id/BikeEditFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/ItemEditFragment"
-        android:name="com.ilazar.myapp2.todo.item.ItemEditFragment"
+        android:id="@+id/BikeEditFragment"
+        android:name="com.ilazar.myapp2.todo.bike.BikeEditFragment"
         android:label="@string/item_edit_fragment_label"
-        tools:layout="@layout/fragment_item_edit" >
+        tools:layout="@layout/fragment_bike_edit" >
 
         <action
             android:id="@+id/action_ItemEditFragment_to_ItemListFragment"

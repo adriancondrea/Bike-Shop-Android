@@ -1,4 +1,4 @@
-package com.ilazar.myapp2.todo.items
+package com.ilazar.myapp2.todo.bikes
 
 import android.app.Application
 import android.util.Log
@@ -8,38 +8,38 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.ilazar.myapp2.core.Result
 import com.ilazar.myapp2.core.TAG
-import com.ilazar.myapp2.todo.data.Item
-import com.ilazar.myapp2.todo.data.ItemRepository
-import com.ilazar.myapp2.todo.data.local.TodoDatabase
+import com.ilazar.myapp2.todo.data.Bike
+import com.ilazar.myapp2.todo.data.BikeRepository
+import com.ilazar.myapp2.todo.data.local.BikeDatabase
 import kotlinx.coroutines.launch
 
-class ItemListViewModel(application: Application) : AndroidViewModel(application) {
+class BikeListViewModel(application: Application) : AndroidViewModel(application) {
     private val mutableLoading = MutableLiveData<Boolean>().apply { value = false }
     private val mutableException = MutableLiveData<Exception>().apply { value = null }
 
-    val items: LiveData<List<Item>>
+    val bikes: LiveData<List<Bike>>
     val loading: LiveData<Boolean> = mutableLoading
     val loadingError: LiveData<Exception> = mutableException
 
-    val itemRepository: ItemRepository
+    private val bikeRepository: BikeRepository
 
     init {
-        val itemDao = TodoDatabase.getDatabase(application, viewModelScope).itemDao()
-        itemRepository = ItemRepository(itemDao)
-        items = itemRepository.items
+        val bikeDao = BikeDatabase.getDatabase(application, viewModelScope).bikeDao()
+        bikeRepository = BikeRepository(bikeDao)
+        bikes = bikeRepository.bikes
     }
 
     fun refresh() {
         viewModelScope.launch {
-            Log.v(TAG, "refresh...");
+            Log.v(TAG, "refresh...")
             mutableLoading.value = true
             mutableException.value = null
-            when (val result = itemRepository.refresh()) {
+            when (val result = bikeRepository.refresh()) {
                 is Result.Success -> {
-                    Log.d(TAG, "refresh succeeded");
+                    Log.d(TAG, "refresh succeeded")
                 }
                 is Result.Error -> {
-                    Log.w(TAG, "refresh failed", result.exception);
+                    Log.w(TAG, "refresh failed", result.exception)
                     mutableException.value = result.exception
                 }
             }

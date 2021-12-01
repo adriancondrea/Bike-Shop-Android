@@ -1,4 +1,4 @@
-package com.ilazar.myapp2.todo.item
+package com.ilazar.myapp2.todo.bike
 
 import android.os.Bundle
 import android.util.Log
@@ -10,33 +10,33 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.ilazar.myapp2.core.TAG
-import com.ilazar.myapp2.databinding.FragmentItemEditBinding
-import com.ilazar.myapp2.todo.data.Item
+import com.ilazar.myapp2.databinding.FragmentBikeEditBinding
+import com.ilazar.myapp2.todo.data.Bike
 
-class ItemEditFragment : Fragment() {
+class BikeEditFragment : Fragment() {
     companion object {
-        const val ITEM_ID = "ITEM_ID"
+        const val BIKE_ID = "BIKE_ID"
     }
 
-    private lateinit var viewModel: ItemEditViewModel
-    private var itemId: String? = null
-    private var item: Item? = null
+    private lateinit var viewModel: BikeEditViewModel
+    private var bikeId: String? = null
+    private var bike: Bike? = null
 
-    private var _binding: FragmentItemEditBinding? = null
+    private var _binding: FragmentBikeEditBinding? = null
 
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         Log.i(TAG, "onCreateView")
         arguments?.let {
-            if (it.containsKey(ITEM_ID)) {
-                itemId = it.getString(ITEM_ID).toString()
+            if (it.containsKey(BIKE_ID)) {
+                bikeId = it.getString(BIKE_ID).toString()
             }
         }
-        _binding = FragmentItemEditBinding.inflate(inflater, container, false)
+        _binding = FragmentBikeEditBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -45,14 +45,18 @@ class ItemEditFragment : Fragment() {
         Log.i(TAG, "onViewCreated")
         setupViewModel()
         binding.fab.setOnClickListener {
-            Log.v(TAG, "save item")
-            val i = item
+            Log.v(TAG, "save bike")
+            val i = bike
             if (i != null) {
-                i.text = binding.itemText.text.toString()
-                viewModel.saveOrUpdateItem(i)
+                i.name = binding.bikeName.text.toString()
+                i.condition = binding.bikeCondition.text.toString()
+                i.price = binding.bikePrice.text.toString().toInt()
+                i.warranty = binding.bikeWarranty.isChecked
+                viewModel.saveOrUpdateBike(i)
             }
         }
-        binding.itemText.setText(itemId)
+        //todo: what is this?
+//        binding.bikeName.setText(bikeId)
     }
 
     override fun onDestroyView() {
@@ -62,7 +66,7 @@ class ItemEditFragment : Fragment() {
     }
 
     private fun setupViewModel() {
-        viewModel = ViewModelProvider(this).get(ItemEditViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(BikeEditViewModel::class.java)
         viewModel.fetching.observe(viewLifecycleOwner, { fetching ->
             Log.v(TAG, "update fetching")
             binding.progress.visibility = if (fetching) View.VISIBLE else View.GONE
@@ -83,15 +87,18 @@ class ItemEditFragment : Fragment() {
                 findNavController().navigateUp()
             }
         })
-        val id = itemId
+        val id = bikeId
         if (id == null) {
-            item = Item("", "")
+            bike = Bike("", "", "", false, 0)
         } else {
-            viewModel.getItemById(id).observe(viewLifecycleOwner, {
-                Log.v(TAG, "update items")
+            viewModel.getBikeById(id).observe(viewLifecycleOwner, {
+                Log.v(TAG, "update bikes")
                 if (it != null) {
-                    item = it
-                    binding.itemText.setText(it.text)
+                    bike = it
+                    binding.bikeName.setText(it.name)
+                    binding.bikeWarranty.isChecked = it.warranty
+                    binding.bikePrice.setText(it.price.toString())
+                    binding.bikeCondition.setText(it.condition)
                 }
             })
         }
