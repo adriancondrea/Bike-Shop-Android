@@ -13,6 +13,7 @@ class ItemRepository(private val itemDao: ItemDao) {
 
     suspend fun refresh(): Result<Boolean> {
         try {
+            itemDao.deleteAll()
             val items = ItemApi.service.find()
             for (item in items) {
                 itemDao.insert(item)
