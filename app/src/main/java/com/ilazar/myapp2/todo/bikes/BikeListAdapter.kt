@@ -42,8 +42,8 @@ class BikeListAdapter(
         Log.v(TAG, "onBindViewHolder $position")
         val bike = bikes[position]
         holder.nameView.text = bike.name
-        holder.conditionView.text = bike.condition
-        holder.warrantyView.text = bike.warranty.toString()
+//        holder.conditionView.text = bike.condition
+//        holder.warrantyView.text = bike.warranty.toString()
         holder.priceView.text = bike.price.toString()
         holder.itemView.tag = bike
         holder.itemView.setOnClickListener(onBikeClick)
@@ -53,8 +53,8 @@ class BikeListAdapter(
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameView: TextView = view.findViewById(R.id.name)
-        val conditionView: TextView = view.findViewById(R.id.condition)
-        val warrantyView: TextView = view.findViewById(R.id.warranty)
+//        val conditionView: TextView = view.findViewById(R.id.condition)
+//        val warrantyView: TextView = view.findViewById(R.id.warranty)
         val priceView: TextView = view.findViewById(R.id.price)
 
     }
