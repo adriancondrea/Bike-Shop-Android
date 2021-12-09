@@ -1,7 +1,7 @@
-package com.ilazar.myapp2.todo.data.remote
+package com.ilazar.myapp2.bikeStore.data.remote
 
 import com.ilazar.myapp2.core.Api
-import com.ilazar.myapp2.todo.data.Bike
+import com.ilazar.myapp2.bikeStore.data.Bike
 import retrofit2.http.*
 
 object BikeApi {

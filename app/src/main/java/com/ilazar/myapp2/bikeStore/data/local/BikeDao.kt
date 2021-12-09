@@ -1,8 +1,8 @@
-package com.ilazar.myapp2.todo.data.local
+package com.ilazar.myapp2.bikeStore.data.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.ilazar.myapp2.todo.data.Bike
+import com.ilazar.myapp2.bikeStore.data.Bike
 
 @Dao
 interface BikeDao {

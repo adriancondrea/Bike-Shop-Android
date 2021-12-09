@@ -1,4 +1,4 @@
-package com.ilazar.myapp2.todo.bikes
+package com.ilazar.myapp2.bikeStore.bikes
 
 import android.os.Bundle
 import android.util.Log

@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/ItemListFragment"
-        android:name="com.ilazar.myapp2.todo.bikes.BikeListFragment"
+        android:name="com.ilazar.myapp2.bikeStore.bikes.BikeListFragment"
         android:label="@string/item_list_fragment_label"
         tools:layout="@layout/fragment_bike_list" >
 
@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/BikeEditFragment"
-        android:name="com.ilazar.myapp2.todo.bike.BikeEditFragment"
+        android:name="com.ilazar.myapp2.bikeStore.bike.BikeEditFragment"
         android:label="@string/item_edit_fragment_label"
         tools:layout="@layout/fragment_bike_edit" >
 

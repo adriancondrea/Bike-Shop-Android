@@ -1,4 +1,4 @@
-package com.ilazar.myapp2.todo.bike
+package com.ilazar.myapp2.bikeStore.bike
 
 import android.os.Bundle
 import android.util.Log
@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.ilazar.myapp2.core.TAG
 import com.ilazar.myapp2.databinding.FragmentBikeEditBinding
-import com.ilazar.myapp2.todo.data.Bike
+import com.ilazar.myapp2.bikeStore.data.Bike
 
 class BikeEditFragment : Fragment() {
     companion object {

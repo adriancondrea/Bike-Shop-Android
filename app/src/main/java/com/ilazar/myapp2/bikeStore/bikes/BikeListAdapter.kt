@@ -1,4 +1,4 @@
-package com.ilazar.myapp2.todo.bikes
+package com.ilazar.myapp2.bikeStore.bikes
 
 import android.os.Bundle
 import android.util.Log
@@ -11,8 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.ilazar.myapp2.R
 import com.ilazar.myapp2.core.TAG
-import com.ilazar.myapp2.todo.data.Bike
-import com.ilazar.myapp2.todo.bike.BikeEditFragment
+import com.ilazar.myapp2.bikeStore.data.Bike
+import com.ilazar.myapp2.bikeStore.bike.BikeEditFragment
 
 class BikeListAdapter(
     private val fragment: Fragment,

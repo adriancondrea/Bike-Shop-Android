@@ -1,9 +1,9 @@
-package com.ilazar.myapp2.todo.data
+package com.ilazar.myapp2.bikeStore.data
 
 import androidx.lifecycle.LiveData
 import com.ilazar.myapp2.core.Result
-import com.ilazar.myapp2.todo.data.local.BikeDao
-import com.ilazar.myapp2.todo.data.remote.BikeApi
+import com.ilazar.myapp2.bikeStore.data.local.BikeDao
+import com.ilazar.myapp2.bikeStore.data.remote.BikeApi
 
 class BikeRepository(private val bikeDao: BikeDao) {
 

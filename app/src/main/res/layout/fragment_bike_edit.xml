@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".todo.bike.BikeEditFragment">
+    tools:context=".bikeStore.bike.BikeEditFragment">
 
     <ProgressBar
         android:id="@+id/progress"

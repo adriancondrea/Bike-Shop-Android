@@ -1,11 +1,11 @@
-package com.ilazar.myapp2.todo.data.local
+package com.ilazar.myapp2.bikeStore.data.local
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.ilazar.myapp2.todo.data.Bike
+import com.ilazar.myapp2.bikeStore.data.Bike
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

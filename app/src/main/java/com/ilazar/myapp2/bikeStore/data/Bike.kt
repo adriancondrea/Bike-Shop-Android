@@ -1,4 +1,4 @@
-package com.ilazar.myapp2.todo.data
+package com.ilazar.myapp2.bikeStore.data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
