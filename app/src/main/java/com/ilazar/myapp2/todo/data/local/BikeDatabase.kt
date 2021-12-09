@@ -50,6 +50,7 @@ abstract class BikeDatabase : RoomDatabase() {
         }
 
         suspend fun populateDatabase(bikeDao: BikeDao) {
+            bikeDao.deleteAll()
 //            itemDao.deleteAll()
 //            val item = Item("1", "Hello")
 //            itemDao.insert(item)
