@@ -42,7 +42,7 @@ class BikeEditViewModel(application: Application) : AndroidViewModel(application
             val result: Result<Bike> = if (bike._id.isNotEmpty()) {
                 bikeRepository.update(bike)
             } else {
-                bike._id = (bikeRepository.bikes.value?.size?.plus(1)).toString()
+//                bike._id = (bikeRepository.bikes.value?.size?.plus(1)).toString()
                 bikeRepository.save(bike)
             }
             when(result) {
