@@ -1,5 +1,6 @@
 package com.ilazar.myapp2.bikeStore.bike
 
+import android.R.attr
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +13,15 @@ import androidx.navigation.fragment.findNavController
 import com.ilazar.myapp2.core.TAG
 import com.ilazar.myapp2.databinding.FragmentBikeEditBinding
 import com.ilazar.myapp2.bikeStore.data.Bike
+import android.view.animation.BounceInterpolator
+
+import android.R.attr.button
+
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.ilazar.myapp2.R
+
 
 class BikeEditFragment : Fragment() {
     companion object {
@@ -55,6 +65,16 @@ class BikeEditFragment : Fragment() {
                 viewModel.saveOrUpdateBike(i)
             }
         }
+        bounceAnimation(binding.fab)
+    }
+
+    private fun bounceAnimation(button: FloatingActionButton) {
+        ObjectAnimator.ofFloat(button, "translationY", -200f, 0f).apply {
+            duration = 1000 //1 sec
+            interpolator = BounceInterpolator()
+            repeatMode = ValueAnimator.REVERSE
+            start()
+        }
     }
 
     override fun onDestroyView() {
@@ -82,7 +102,7 @@ class BikeEditFragment : Fragment() {
         viewModel.completed.observe(viewLifecycleOwner, { completed ->
             if (completed) {
                 Log.v(TAG, "completed, navigate back")
-                findNavController().navigateUp()
+                findNavController().navigate(R.id.action_BikeEditFragment_to_BikeListFragment)
             }
         })
         val id = bikeId

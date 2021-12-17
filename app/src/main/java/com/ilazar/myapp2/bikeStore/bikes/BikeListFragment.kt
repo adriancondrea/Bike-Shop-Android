@@ -39,7 +39,7 @@ class BikeListFragment : Fragment() {
         setupBikeList()
         binding.fab.setOnClickListener {
             Log.v(TAG, "add new bike")
-            findNavController().navigate(R.id.BikeEditFragment)
+            findNavController().navigate(R.id.action_BikeListFragment_to_BikeEditFragment)
         }
     }
 

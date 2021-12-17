@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/ItemListFragment">
+    app:startDestination="@id/BikeListFragment">
 
     <fragment
         android:id="@+id/FragmentLogin"
@@ -12,24 +12,32 @@
         tools:layout="@layout/fragment_login" />
 
     <fragment
-        android:id="@+id/ItemListFragment"
+        android:id="@+id/BikeListFragment"
         android:name="com.ilazar.myapp2.bikeStore.bikes.BikeListFragment"
-        android:label="@string/item_list_fragment_label"
-        tools:layout="@layout/fragment_bike_list" >
+        android:label="@string/bike_list_fragment_label"
+        tools:layout="@layout/fragment_bike_list">
 
         <action
-            android:id="@+id/action_ItemListFragment_to_ItemEditFragment"
-            app:destination="@id/BikeEditFragment" />
+            android:id="@+id/action_BikeListFragment_to_BikeEditFragment"
+            app:destination="@id/BikeEditFragment"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
 
     <fragment
         android:id="@+id/BikeEditFragment"
         android:name="com.ilazar.myapp2.bikeStore.bike.BikeEditFragment"
-        android:label="@string/item_edit_fragment_label"
-        tools:layout="@layout/fragment_bike_edit" >
+        android:label="@string/bike_edit_fragment_label"
+        tools:layout="@layout/fragment_bike_edit">
 
         <action
-            android:id="@+id/action_ItemEditFragment_to_ItemListFragment"
-            app:destination="@id/ItemListFragment" />
+            android:id="@+id/action_BikeEditFragment_to_BikeListFragment"
+            app:destination="@id/BikeListFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
 </navigation>
