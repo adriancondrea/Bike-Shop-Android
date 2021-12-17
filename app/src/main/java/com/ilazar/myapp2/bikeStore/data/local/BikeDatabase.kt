@@ -31,6 +31,7 @@ abstract class BikeDatabase : RoomDatabase() {
                     "bike_db"
                 )
                     .addCallback(WordDatabaseCallback(scope))
+                    .allowMainThreadQueries()
                     .build()
             INSTANCE = instance
             return instance
@@ -50,7 +51,7 @@ abstract class BikeDatabase : RoomDatabase() {
         }
 
         suspend fun populateDatabase(bikeDao: BikeDao) {
-            bikeDao.deleteAll()
+//            bikeDao.deleteAll()
 //            itemDao.deleteAll()
 //            val item = Item("1", "Hello")
 //            itemDao.insert(item)

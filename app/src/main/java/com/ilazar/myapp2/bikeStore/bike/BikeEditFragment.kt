@@ -55,8 +55,6 @@ class BikeEditFragment : Fragment() {
                 viewModel.saveOrUpdateBike(i)
             }
         }
-        //todo: what is this?
-//        binding.bikeName.setText(bikeId)
     }
 
     override fun onDestroyView() {

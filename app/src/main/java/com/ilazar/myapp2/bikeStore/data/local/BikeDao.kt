@@ -20,4 +20,10 @@ interface BikeDao {
 
     @Query("DELETE FROM bikes")
     suspend fun deleteAll()
+
+    @Query("SELECT Count(*) FROM bikes")
+    fun getSize(): Int
+
+    @Query("SELECT * FROM bikes WHERE _id=:id ")
+    fun getByIdNotLiveData(id: String?): Bike
 }

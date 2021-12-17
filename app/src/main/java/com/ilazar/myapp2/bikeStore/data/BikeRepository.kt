@@ -1,6 +1,9 @@
 package com.ilazar.myapp2.bikeStore.data
 
+import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.work.*
 import com.ilazar.myapp2.core.Result
 import com.ilazar.myapp2.bikeStore.data.local.BikeDao
 import com.ilazar.myapp2.bikeStore.data.remote.BikeApi
@@ -42,7 +45,27 @@ class BikeRepository(private val bikeDao: BikeDao) {
             bikeDao.update(updatedBike)
             Result.Success(updatedBike)
         } catch(e: Exception) {
+            Log.d("edit","failed to edit on server")
+            bikeDao.update(bike)
+            Log.d("edit","edited locally id ${bike._id}")
+            startEditJob(bike._id)
+            Log.d("edit","enqueued job")
             Result.Error(e)
         }
+    }
+
+    @SuppressLint("RestrictedApi")
+    private fun startEditJob(bikeId: String) {
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.UNMETERED)
+            .build()
+        val inputData = Data.Builder()
+            .put("bikeId",bikeId)
+            .build()
+        val myWork = OneTimeWorkRequest.Builder(EditWorker::class.java)
+            .setConstraints(constraints)
+            .setInputData(inputData)
+            .build()
+        WorkManager.getInstance().enqueue(myWork)
     }
 }
