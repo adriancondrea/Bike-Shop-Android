@@ -13,15 +13,14 @@ class BikeRepository(private val bikeDao: BikeDao) {
     val bikes = bikeDao.getAll()
 
     suspend fun refresh(): Result<Boolean> {
-        return try {
-            bikeDao.deleteAll()
+        try {
             val bikes = BikeApi.service.find()
             for (bike in bikes) {
                 bikeDao.insert(bike)
             }
-            Result.Success(true)
+            return Result.Success(true)
         } catch(e: Exception) {
-            Result.Error(e)
+            return Result.Error(e)
         }
     }
 
@@ -40,17 +39,17 @@ class BikeRepository(private val bikeDao: BikeDao) {
     }
 
     suspend fun update(bike: Bike): Result<Bike> {
-        return try {
+        try {
             val updatedBike = BikeApi.service.update(bike._id, bike)
             bikeDao.update(updatedBike)
-            Result.Success(updatedBike)
+            return Result.Success(updatedBike)
         } catch(e: Exception) {
             Log.d("edit","failed to edit on server")
             bikeDao.update(bike)
             Log.d("edit","edited locally id ${bike._id}")
             startEditJob(bike._id)
             Log.d("edit","enqueued job")
-            Result.Error(e)
+            return Result.Error(e)
         }
     }
 

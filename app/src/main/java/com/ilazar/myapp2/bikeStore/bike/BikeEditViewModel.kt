@@ -39,11 +39,11 @@ class BikeEditViewModel(application: Application) : AndroidViewModel(application
             Log.v(TAG, "saveOrUpdateBike...")
             mutableFetching.value = true
             mutableException.value = null
-            val result: Result<Bike> = if (bike._id.isNotEmpty()) {
-                bikeRepository.update(bike)
+            val result: Result<Bike>
+            if (bike._id.isNotEmpty()) {
+                result = bikeRepository.update(bike)
             } else {
-//                bike._id = (bikeRepository.bikes.value?.size?.plus(1)).toString()
-                bikeRepository.save(bike)
+                result = bikeRepository.save(bike)
             }
             when(result) {
                 is Result.Success -> {
