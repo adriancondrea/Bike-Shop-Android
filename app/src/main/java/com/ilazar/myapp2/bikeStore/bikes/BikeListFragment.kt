@@ -1,5 +1,6 @@
 package com.ilazar.myapp2.bikeStore.bikes
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.ilazar.myapp2.R
+import com.ilazar.myapp2.core.SensorsWindow
 import com.ilazar.myapp2.auth.data.AuthRepository
 import com.ilazar.myapp2.core.TAG
 import com.ilazar.myapp2.databinding.FragmentBikeListBinding
@@ -40,6 +42,12 @@ class BikeListFragment : Fragment() {
         binding.fab.setOnClickListener {
             Log.v(TAG, "add new bike")
             findNavController().navigate(R.id.action_BikeListFragment_to_BikeEditFragment)
+        }
+
+        binding.fabSensors.setOnClickListener {
+            Log.v(TAG, "show sensors")
+            val intent = Intent(context, SensorsWindow::class.java)
+            startActivity(intent)
         }
     }
 
